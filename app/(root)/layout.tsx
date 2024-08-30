@@ -1,14 +1,19 @@
 import MobileNav from "@/components/MobileNav";
 import Sidebar from "@/components/Sidebar";
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 import Image from "next/image"; // Importing Image component from Next.js for optimized image loading
+// import { useRouter } from "next/router";
 // RootLayout component that sets up the main layout of the application
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode; // The child components to be rendered inside this layout
 }>) {
+  // const router = useRouter();
   // Simulating a logged-in user with example data
-  const loggedIn = { firstName: "Elias", lastName: "JSM" };
+  const loggedIn = await getLoggedInUser();
+  if (!loggedIn) redirect("/sign-in");
 
   return (
     <main className="flex h-screen w-full font-inter">

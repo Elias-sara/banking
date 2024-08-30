@@ -5,8 +5,9 @@ import Image from "next/image"; // Importing Image component from Next.js for op
 import { sidebarLinks } from "@/constants"; // Importing sidebarLinks from constants file
 import { cn } from "@/lib/utils"; // Importing utility function for conditionally applying class names
 import { usePathname } from "next/navigation"; // Importing hook to get the current pathname
+import Footer from "./Footer";
 
-const Sidebar = ({ user }: SidebarProps) => {
+const Sidebar = ({ user }: SiderbarProps) => {
   // Sidebar component accepting user as a prop
   const pathname = usePathname(); // Hook to get the current URL path
 
@@ -61,7 +62,7 @@ const Sidebar = ({ user }: SidebarProps) => {
         })}
         USER
       </nav>
-      FOOTER
+      <Footer user={user}/>
     </section>
   );
 };

@@ -2,12 +2,9 @@
 import TotalBalanceBox from "@/components/TotalBalanceBox";
 import HeaderBox from "@/components/ui/HeaderBox";
 import RightSidebar from "@/components/RightSidebar";
-const Home = () => {
-  const loggedIn = {
-    firstName: "Elias",
-    lastName: "Sara",
-    email: "contact@jsmastery.pro",
-  };
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+const Home = async () => {
+  const loggedIn = await getLoggedInUser();
   return (
     <section className="home">
       <div className="home-content">
@@ -15,7 +12,7 @@ const Home = () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={loggedIn?.firstName || "Guest"}
+            user={loggedIn?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
 
@@ -27,10 +24,11 @@ const Home = () => {
         </header>
         RECENT TRANSACTIONS
       </div>
-      <RightSidebar 
-      user={loggedIn}
-       transactions={[]} 
-       banks={[{currentBalance:123.50}, {currentBalance:500.50}]} />
+      <RightSidebar
+        user={loggedIn}
+        transactions={[]}
+        banks={[{ currentBalance: 123.5 }, { currentBalance: 500.5 }]}
+      />
     </section>
   );
 };
